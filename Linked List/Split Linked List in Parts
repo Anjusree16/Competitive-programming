@@ -1,0 +1,32 @@
+class Solution(object):
+    def splitListToParts(self, head, k):
+        """
+        :type head: ListNode
+        :type k: int
+        :rtype: List[ListNode]
+        """
+        l=0
+        c=head
+        while c:
+            l+=1
+            c=c.next
+        psize=l//k
+        r=l%k
+        p=[]
+        c=head
+        for i in range(k):
+            ph = c
+            pl = psize + (1 if i < r else 0)  # Adjust length for remainder
+            for j in range(pl - 1):
+                if c:
+                    c = c.next
+            if c:
+                nn = c.next
+                c.next = None  # Cut off the current part
+                c = nn
+            p.append(ph)
+
+        return p
+
+
+        
