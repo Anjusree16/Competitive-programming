@@ -1,0 +1,22 @@
+class Solution(object):
+    def removeNodes(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        if not head:
+            return None
+
+        dummy = ListNode(0)
+        dummy.next = head
+        current = dummy
+        max_value = float('-inf')
+
+        while current.next:
+            if current.next.val < max_value:
+                current.next = current.next.next
+            else:
+                max_value = current.next.val
+                current = current.next
+
+        return dummy.next
