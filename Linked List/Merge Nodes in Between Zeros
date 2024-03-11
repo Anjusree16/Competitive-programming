@@ -1,0 +1,18 @@
+dummy = ListNode(0)
+    dummy.next = head
+    prev_zero = dummy
+
+    while head:
+        if head.val == 0:
+            # Found the first zero
+            prev_zero = head
+            sum_nodes = 0
+            # Traverse until the next zero or end of list
+            while head and head.val != 0:
+                sum_nodes += head.val
+                head = head.next
+            prev_zero.next = ListNode(sum_nodes) if head else None
+        else:
+            head = head.next
+
+    return dummy.next
